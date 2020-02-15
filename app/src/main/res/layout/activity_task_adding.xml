@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LayoutFaba"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="100dp"
+        android:paddingRight="100dp"
+        android:text="To jest solidny tekst o waznym koncepcie, którego nie można pominać." />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/taskImput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Task" />
+
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complexity: "
+            android:textSize="15sp"
+            android:textColor="#000000"/>/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/value1"
+            android:id="@+id/complexitySwitch1"
+            android:checked="false"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/value2"
+            android:id="@+id/complexitySwitch2"
+            android:checked="false"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/value3"
+            android:id="@+id/complexitySwitch3"
+            android:checked="false"/>
+
+    </RadioGroup>
+
+
+
+
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volume:       "
+            android:textSize="15sp"
+            android:textColor="#000000"/>/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/value1"
+            android:id="@+id/volumeSwitch1"
+            android:checked="false"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/value2"
+            android:id="@+id/volumeSwitch2"
+            android:checked="false"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/value3"
+            android:id="@+id/volumeSwitch3"
+            android:checked="false"/>
+
+    </RadioGroup>
+
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Urgency:      "
+            android:textSize="15sp"
+            android:textColor="#000000"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/value1"
+            android:id="@+id/urgencySwitch1"
+            android:checked="false"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/value2"
+            android:id="@+id/urgencySwitch2"
+            android:checked="false"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/value3"
+            android:id="@+id/urgencySwitch3"
+            android:checked="false"/>
+
+    </RadioGroup>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <androidx.appcompat.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enjoyment:    "
+            android:id="@+id/enjoymentSwitch1"
+            android:checked="false"/>
+
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+    <Button
+        android:id="@+id/addToDb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add" />
+
+
+</LinearLayout>
+
+
+
+

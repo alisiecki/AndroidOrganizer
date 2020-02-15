@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Organizer</string>
+    <string name="export_settings">Export</string>
+    <string name="main_button">     losuj     </string>
+    <string name="delete_button">delete</string>
+    <string name="crash_button">crash</string>
+    <string name="work_button">work</string>
+    <string name="info_settings">Info</string>
+
+    <string name="value1">1</string>
+    <string name="value2">2</string>
+    <string name="value3">3</string>
+</resources>
