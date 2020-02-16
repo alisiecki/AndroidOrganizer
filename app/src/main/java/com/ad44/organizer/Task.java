@@ -2,10 +2,10 @@ package com.ad44.organizer;
 
 import android.content.ContentValues;
 
-public class Task{
+public class Task implements TaskInterface{
 
     String text;
-    int id, complexity, volume, urgency, enjoyment;
+    private int id, complexity, volume, urgency, enjoyment;
 
     public Task(int id, String text, int complexity, int volume, int urgency, int enjoyment){
 
@@ -20,7 +20,7 @@ public class Task{
 
     public Task(ContentValues cv){
 
-        this.id = cv.getAsInteger("Id");
+        this.id = cv.getAsInteger("ID");
         this.text = cv.getAsString("Task");
         this.complexity = cv.getAsInteger("Complexity");
         this.volume = cv.getAsInteger("Volume");
@@ -29,27 +29,27 @@ public class Task{
 
     }
 
-
+    @Override
     public String getText() {
         return text;
     }
-
+    @Override
     public int getComplexity() {
         return complexity;
     }
-
+    @Override
     public int getVolume() {
         return volume;
     }
-
+    @Override
     public int getUrgency() {
         return urgency;
     }
-
+    @Override
     public int getEnjoyment() {
         return enjoyment;
     }
-
+    @Override
     public int getId() {
         return id;
     }

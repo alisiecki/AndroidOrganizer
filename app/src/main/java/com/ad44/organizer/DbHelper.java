@@ -156,6 +156,39 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
+    public Task getRandomTaskFromTable(String[] assumptionsTab){
+
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor result = db.query(tableName,null,"complexity IN ("+assumptionsTab[0]+") AND volume IN ("+assumptionsTab[1]+") AND urgency IN ("+assumptionsTab[2]+") AND enjoyment IN ("+assumptionsTab[3]+")",null,null,null,"RANDOM()", "1");
+
+        if(result.getCount() == 0){
+            return null;
+        }
+        else {
+
+            ContentValues rowFromTable = new ContentValues();
+
+            result.moveToFirst();
+
+            rowFromTable.put("ID", result.getInt(0));
+            rowFromTable.put("Task", result.getString(1));
+            rowFromTable.put("Complexity", result.getInt(2));
+            rowFromTable.put("Volume", result.getInt(3));
+            rowFromTable.put("Urgency", result.getInt(4));
+            rowFromTable.put("Enjoyment", result.getInt(5));
+
+            Task task = new Task(rowFromTable);
+
+            result.close();
+            db.close();
+
+            return task;
+        }
+
+
+    }
+
+
 
     public ArrayList<Task> getTasksFromTableUsingProperSearchingAssumptions(String[] assumptionsTab){
 

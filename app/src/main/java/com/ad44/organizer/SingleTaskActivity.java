@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,7 +20,7 @@ public class SingleTaskActivity extends AppCompatActivity {
     TextView drawnTaskText;
     Button delete, crash, work, random, edit;
 
-    ContentValues randomTaskFromTable;
+    Task randomTaskFromTable;
     String taskInfo="Let's start";
     String complexity="";
     String volume="";
@@ -107,7 +106,7 @@ public class SingleTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setSearchingAssumptions();
-                randomTaskFromTable = MainActivity.myDb.getRandomRowFromTable(assumptions);
+                randomTaskFromTable = MainActivity.myDb.getRandomTaskFromTable(assumptions);
                 setTaskInfoButNotOnScreenForAlertDialogPurpose();
                 showDialogWithTaskRandomisation();
                 complexity="";
@@ -121,13 +120,11 @@ public class SingleTaskActivity extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(randomTaskFromTable!=null){
-                    //showEditingSettings(randomTaskFromTable.getAsInteger("ID"),getApplicationContext());
-                    //showEditingSettings(1,getApplicationContext());
+                if(randomTaskFromTable !=null){
 
-                    //randomTaskFromTable=MainActivity.myDb.getDataPerIdInContentValue(randomTaskFromTable.getAsInteger("ID"));
-                    //setTaskInfoButNotOnScreenForAlertDialogPurpose();
-                    showEditingSettings(randomTaskFromTable.getAsInteger("ID"),SingleTaskActivity.this);
+                    showEditingSettings(randomTaskFromTable.getId(),SingleTaskActivity.this);
+
+
                 }
                 else{
                     Toast.makeText(SingleTaskActivity.this, "randomTaskFromTable=null", Toast.LENGTH_SHORT).show();
@@ -142,13 +139,13 @@ public class SingleTaskActivity extends AppCompatActivity {
 
     public void setTaskInfoButNotOnScreenForAlertDialogPurpose(){
 
-        if(randomTaskFromTable!=null) {
-            taskInfo = "ID: " + randomTaskFromTable.getAsInteger("ID") + "\n" +
-                    "Task:" + randomTaskFromTable.getAsString("Task") + "\n" +
-                    "Complexity: " + randomTaskFromTable.getAsInteger("Complexity") + "\n" +
-                    "Volume: " + randomTaskFromTable.getAsInteger("Volume") + "\n" +
-                    "Urgency: " + randomTaskFromTable.getAsInteger("Urgency") + "\n" +
-                    "Enjoyment: " + randomTaskFromTable.getAsInteger("Enjoyment");
+        if(randomTaskFromTable !=null) {
+            taskInfo = "ID: " + randomTaskFromTable.getId() + "\n" +
+                    "Task:" + randomTaskFromTable.getText() + "\n" +
+                    "Complexity: " + randomTaskFromTable.getComplexity() + "\n" +
+                    "Volume: " + randomTaskFromTable.getVolume() + "\n" +
+                    "Urgency: " + randomTaskFromTable.getUrgency() + "\n" +
+                    "Enjoyment: " + randomTaskFromTable.getEnjoyment();
         }
         else{
             taskInfo="brak taskow o podanych zalozeniach";
@@ -171,7 +168,7 @@ public class SingleTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                MainActivity.myDb.deleteTask(randomTaskFromTable.getAsInteger("ID"));
+                MainActivity.myDb.deleteTask(randomTaskFromTable.getId());
                 Toast.makeText(getApplicationContext(),"Done! good job.", Toast.LENGTH_SHORT).show();
                 finish();
 
@@ -192,12 +189,12 @@ public class SingleTaskActivity extends AppCompatActivity {
         builder.setCancelable(true);
         builder.setTitle("Task will be:");
 
-        if(randomTaskFromTable!=null) {
-            builder.setMessage("Complexity: " + randomTaskFromTable.get("Complexity") + "\n" +
-                    "Volume: " + randomTaskFromTable.get("Volume") +
-                    Utility.getTaskDescription(randomTaskFromTable.getAsInteger("Complexity"), randomTaskFromTable.getAsInteger("Volume")) + "\n" +
-                    "Urgency: " + randomTaskFromTable.get("Urgency") + "\n" +
-                    "Enjoyment: " + randomTaskFromTable.get("Enjoyment"));
+        if(randomTaskFromTable !=null) {
+            builder.setMessage("Complexity: " + randomTaskFromTable.getId() + "\n" +
+                    "Volume: " + randomTaskFromTable.getVolume() +
+                    Utility.getTaskDescription(randomTaskFromTable.getComplexity(), randomTaskFromTable.getVolume()) + "\n" +
+                    "Urgency: " + randomTaskFromTable.getUrgency() + "\n" +
+                    "Enjoyment: " + randomTaskFromTable.getEnjoyment());
 
         }
         else{
@@ -208,7 +205,7 @@ public class SingleTaskActivity extends AppCompatActivity {
         builder.setNegativeButton("Next", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                randomTaskFromTable = MainActivity.myDb.getRandomRowFromTable(assumptions);
+                randomTaskFromTable = MainActivity.myDb.getRandomTaskFromTable(assumptions);
                 setTaskInfoButNotOnScreenForAlertDialogPurpose();
                 showDialogWithTaskRandomisation();
             }
