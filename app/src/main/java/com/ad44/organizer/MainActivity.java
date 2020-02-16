@@ -32,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
     Button openSingleTaskPage, getAllData;
     FloatingActionButton fab;
     Toolbar toolbar;
-    private static final String TAG = "MainActivity";
 
+    int CREATE_DESTINATION_FILE_FOR_DATABASE_EXPORTED = 1;
+    int RUN_DATABASE_COPYING = 2;
 
 
 
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("*/*");
-        startActivityForResult(intent,3);
+        startActivityForResult(intent,CREATE_DESTINATION_FILE_FOR_DATABASE_EXPORTED);
 
     }
 
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("*/*");
-        startActivityForResult(intent,4);
+        startActivityForResult(intent,RUN_DATABASE_COPYING);
 
 
 
@@ -117,24 +118,24 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
 
         super.onActivityResult(requestCode, resultCode, resultData);
-        Uri uriOfDestinationFile = null;
+        Uri uriOfDestinationFile;
 
         if (resultCode == Activity.RESULT_OK) {
 
             switch (requestCode) {
-                case 3:
+                case 1:
                     if (resultData != null) {
-                        Toast.makeText(this, "Destination file created", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, getString(R.string.destination_file_for_database_created), Toast.LENGTH_SHORT).show();
 
                         continueDatabaseExporting();
                         break;
                     }
 
-                case 4:
+                case 2:
                     if (resultData != null) {
 
                         try {
-                            File dbToBeExported = new File("/data/data/com.ad44.organizer/databases/MojaTabela2");
+                            File dbToBeExported = new File(getString(R.string.path_to_table_to_be_exporter));
                             FileInputStream fileInputStream = new FileInputStream(dbToBeExported);
 
                             uriOfDestinationFile = resultData.getData();
@@ -142,11 +143,9 @@ public class MainActivity extends AppCompatActivity {
                             FileOutputStream fileOutputStream = new FileOutputStream(fd);
 
                             Utility.copyFile(fileInputStream,fileOutputStream);
-                            Toast.makeText(this, "SQLite tasks database exported to file", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, getString(R.string.export_completed), Toast.LENGTH_SHORT).show();
 
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }catch (IOException e) {
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
                         break;
@@ -194,8 +193,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.add_task:
                 return true;
 
-            case R.id.info_settings:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("Github:").setMessage("https://github.com/szerholder/AndroidOrganizer").setNegativeButton("Return",null);
+            case R.id.info:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle(getString(R.string.info_title)).setMessage(getString(R.string.info_content)).setNegativeButton(getString(R.string.return_button),null);
                 builder.show();
                 return true;
         }

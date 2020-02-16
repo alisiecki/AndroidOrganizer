@@ -24,7 +24,7 @@
             android:id="@+id/singleActivityRandom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Losuj"
+            android:text="@string/main_button"
             android:layout_marginTop="10dp"/>
     </LinearLayout>
 
@@ -91,14 +91,14 @@
         <androidx.appcompat.widget.SwitchCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
+            android:text="@string/value2"
             android:id="@+id/complexitySwitch2"
             android:checked="true"/>
 
         <androidx.appcompat.widget.SwitchCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"
+            android:text="@string/value3"
             android:id="@+id/complexitySwitch3"
             android:checked="true"/>
 
@@ -126,14 +126,14 @@
         <androidx.appcompat.widget.SwitchCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
+            android:text="@string/value2"
             android:id="@+id/volumeSwitch2"
             android:checked="true"/>
 
         <androidx.appcompat.widget.SwitchCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"
+            android:text="@string/value3"
             android:id="@+id/volumeSwitch3"
             android:checked="true"/>
 
@@ -158,14 +158,14 @@
         <androidx.appcompat.widget.SwitchCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
+            android:text="@string/value2"
             android:id="@+id/urgencySwitch2"
             android:checked="true"/>
 
         <androidx.appcompat.widget.SwitchCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"
+            android:text="@string/value3"
             android:id="@+id/urgencySwitch3"
             android:checked="true"/>
 
@@ -189,7 +189,7 @@
         <androidx.appcompat.widget.SwitchCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
+            android:text="@string/value1"
             android:id="@+id/enjoymentSwitch2"
             android:checked="true"/>
 
@@ -208,7 +208,7 @@
             android:id="@+id/Edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit"
+            android:text="@string/edit"
             android:layout_marginTop="10dp"/>
     </LinearLayout>
 

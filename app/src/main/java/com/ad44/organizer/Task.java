@@ -4,7 +4,7 @@ import android.content.ContentValues;
 
 public class Task implements TaskInterface{
 
-    String text;
+    private String text;
     private int id, complexity, volume, urgency, enjoyment;
 
     public Task(int id, String text, int complexity, int volume, int urgency, int enjoyment){

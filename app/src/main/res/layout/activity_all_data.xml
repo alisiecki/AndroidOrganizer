@@ -34,7 +34,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Legend: \n C-Complexity \n V-Volume \n U-Urgency \n E-Enjoyment" />
+            android:text="@string/all_data_legend" />
 
         <Button
             android:id="@+id/detailed_data"
@@ -42,11 +42,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="Detailed Data" />
+            android:text="@string/detailed_data" />
 
     </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
-
-
 
 
 

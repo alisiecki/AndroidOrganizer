@@ -61,53 +61,57 @@ public class TaskAddingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(complexitySwitch1.isChecked()==true){
+                if(complexitySwitch1.isChecked()){
                     complexity=1;
                 }
-                if(complexitySwitch2.isChecked()==true){
+                if(complexitySwitch2.isChecked()){
                     complexity=2;
                 }
-                if(complexitySwitch3.isChecked()==true){
+                if(complexitySwitch3.isChecked()){
                     complexity=3;
                 }
 
 
 
 
-                if(volumeSwitch1.isChecked()==true){
+                if(volumeSwitch1.isChecked()){
                     volume=1;
                 }
-                if(volumeSwitch2.isChecked()==true){
+                if(volumeSwitch2.isChecked()){
                     volume=2;
                 }
-                if(volumeSwitch3.isChecked()==true){
+                if(volumeSwitch3.isChecked()){
                     volume=3;
                 }
 
 
 
-                if(urgencySwitch1.isChecked()==true){
+                if(urgencySwitch1.isChecked()){
                     urgency=1;
                 }
-                if(urgencySwitch2.isChecked()==true){
+                if(urgencySwitch2.isChecked()){
                     urgency=2;
                 }
-                if(urgencySwitch3.isChecked()==true){
+                if(urgencySwitch3.isChecked()){
                     urgency=3;
                 }
 
 
-                if(enjoymentSwitch1.isChecked()==true){
+                if(enjoymentSwitch1.isChecked()){
                     enjoyment=1;
                 }
-                if(enjoymentSwitch1.isChecked()==false){
+                else{
                     enjoyment=0;
                 }
 
 
                 boolean isInserted = myDb.addTask(taskInput.getText().toString(),complexity,volume,urgency, enjoyment);
 
-                Toast.makeText(getApplicationContext(),"complated? " + isInserted, Toast.LENGTH_SHORT).show();
+                if(isInserted)
+                    Toast.makeText(getApplicationContext(),getString(R.string.done), Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext(),getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+
                 finish();
 
             }

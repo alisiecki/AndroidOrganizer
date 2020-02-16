@@ -21,7 +21,7 @@ public class SingleTaskActivity extends AppCompatActivity {
     Button delete, crash, work, random, edit;
 
     Task randomTaskFromTable;
-    String taskInfo="Let's start";
+    String taskInfo;
     String complexity="";
     String volume="";
     String urgency="";
@@ -64,18 +64,15 @@ public class SingleTaskActivity extends AppCompatActivity {
         enjoymentSwitch2=findViewById(R.id.enjoymentSwitch2);
 
 
-
-
-
+        taskInfo=getString(R.string.text_showed_before_task_draw);
         drawnTaskText.setText(taskInfo);
-
 
 
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showWarningAfterDeleteClick("Task completed!", "Czy na pewno chcesz usunać?");
+                showWarningAfterDeleteClick(getString(R.string.task_completed), getString(R.string.sure_about_deleting));
 
             }
         });
@@ -86,8 +83,8 @@ public class SingleTaskActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), TaskAddingActivity.class);
                 startActivity(intent);
-                Toast.makeText(getApplicationContext(),"Crash! Jest moc!", Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(),"Pamietaj o dodaniu enjoy tasku", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),getString(R.string.after_crash), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getString(R.string.after_crash_2), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -96,7 +93,7 @@ public class SingleTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(),"Great, give it a try", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getString(R.string.after_work), Toast.LENGTH_SHORT).show();
                 finish();
 
             }
@@ -127,7 +124,7 @@ public class SingleTaskActivity extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(SingleTaskActivity.this, "randomTaskFromTable=null", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SingleTaskActivity.this, getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -148,7 +145,7 @@ public class SingleTaskActivity extends AppCompatActivity {
                     "Enjoyment: " + randomTaskFromTable.getEnjoyment();
         }
         else{
-            taskInfo="brak taskow o podanych zalozeniach";
+            taskInfo=getString(R.string.no_data_found);
 
         }
 
@@ -162,14 +159,14 @@ public class SingleTaskActivity extends AppCompatActivity {
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(message);
-        builder.setNegativeButton("Nie", null);
+        builder.setNegativeButton(getString(R.string.no), null);
 
-        builder.setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
                 MainActivity.myDb.deleteTask(randomTaskFromTable.getId());
-                Toast.makeText(getApplicationContext(),"Done! good job.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getString(R.string.after_deleting), Toast.LENGTH_SHORT).show();
                 finish();
 
 
@@ -187,22 +184,22 @@ public class SingleTaskActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
-        builder.setTitle("Task will be:");
+        builder.setTitle(getString(R.string.task_will_be));
 
         if(randomTaskFromTable !=null) {
-            builder.setMessage("Complexity: " + randomTaskFromTable.getId() + "\n" +
-                    "Volume: " + randomTaskFromTable.getVolume() +
-                    Utility.getTaskDescription(randomTaskFromTable.getComplexity(), randomTaskFromTable.getVolume()) + "\n" +
-                    "Urgency: " + randomTaskFromTable.getUrgency() + "\n" +
-                    "Enjoyment: " + randomTaskFromTable.getEnjoyment());
+            builder.setMessage(getString(R.string.complexity) + randomTaskFromTable.getComplexity() + "\n" +
+                    getString(R.string.volume) + randomTaskFromTable.getVolume() +
+                    Utility.getTaskDescription(randomTaskFromTable.getComplexity(), randomTaskFromTable.getVolume(),this) + "\n" +
+                    getString(R.string.urgency) + randomTaskFromTable.getUrgency() + "\n" +
+                    getString(R.string.enjoyment) + randomTaskFromTable.getEnjoyment());
 
         }
         else{
-            builder.setMessage("no data");
+            builder.setMessage(getString(R.string.no_data_found));
         }
 
 
-        builder.setNegativeButton("Next", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getString(R.string.next), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 randomTaskFromTable = MainActivity.myDb.getRandomTaskFromTable(assumptions);
@@ -211,7 +208,7 @@ public class SingleTaskActivity extends AppCompatActivity {
             }
         });
 
-        builder.setPositiveButton("Make it happened", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getString(R.string.make_it_happened), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 drawnTaskText.setText(taskInfo);
@@ -224,58 +221,58 @@ public class SingleTaskActivity extends AppCompatActivity {
 
     public void setSearchingAssumptions(){
 
-        if(complexitySwitch1.isChecked()==true){
+        if(complexitySwitch1.isChecked()){
             complexity+="1,";
         }
-        if(complexitySwitch2.isChecked()==true){
+        if(complexitySwitch2.isChecked()){
             complexity+="2,";
         }
-        if(complexitySwitch3.isChecked()==true){
+        if(complexitySwitch3.isChecked()){
             complexity+="3,";
         }
-        if(complexitySwitch1.isChecked()==false && complexitySwitch2.isChecked()==false && complexitySwitch3.isChecked()==false){
+        if(!complexitySwitch1.isChecked() && !complexitySwitch2.isChecked() && !complexitySwitch3.isChecked()){
             complexity="1,2,3,";
         }
         complexity=complexity.substring(0,complexity.length()-1);
 
 
-        if(volumeSwitch1.isChecked()==true){
+        if(volumeSwitch1.isChecked()){
             volume+="1,";
         }
-        if(volumeSwitch2.isChecked()==true){
+        if(volumeSwitch2.isChecked()){
             volume+="2,";
         }
-        if(volumeSwitch3.isChecked()==true){
+        if(volumeSwitch3.isChecked()){
             volume+="3,";
         }
-        if(volumeSwitch1.isChecked()==false && volumeSwitch2.isChecked()==false && volumeSwitch3.isChecked()==false){
+        if(!volumeSwitch1.isChecked() && !volumeSwitch2.isChecked() && !volumeSwitch3.isChecked()){
             volume="1,2,3,";
         }
         volume=volume.substring(0,volume.length()-1);
 
 
-        if(urgencySwitch1.isChecked()==true){
+        if(urgencySwitch1.isChecked()){
             urgency+="1,";
         }
-        if(urgencySwitch2.isChecked()==true){
+        if(urgencySwitch2.isChecked()){
             urgency+="2,";
         }
-        if(urgencySwitch3.isChecked()==true){
+        if(urgencySwitch3.isChecked()){
             urgency+="3,";
         }
-        if(urgencySwitch1.isChecked()==false && urgencySwitch2.isChecked()==false && urgencySwitch3.isChecked()==false){
+        if(!urgencySwitch1.isChecked() && !urgencySwitch2.isChecked() && !urgencySwitch3.isChecked()){
             urgency="1,2,3,";
         }
         urgency=urgency.substring(0,urgency.length()-1);
 
 
-        if(enjoymentSwitch1.isChecked()==true){
+        if(enjoymentSwitch1.isChecked()){
             enjoyment+="0,";
         }
-        if(enjoymentSwitch2.isChecked()==true){
+        if(enjoymentSwitch2.isChecked()){
             enjoyment+="1,";
         }
-        if(enjoymentSwitch1.isChecked()==false && enjoymentSwitch2.isChecked()==false){
+        if(!enjoymentSwitch1.isChecked() && !enjoymentSwitch2.isChecked()){
             enjoyment="0,1,";
         }
         enjoyment=enjoyment.substring(0,enjoyment.length()-1);
@@ -293,16 +290,12 @@ public class SingleTaskActivity extends AppCompatActivity {
         final CharSequence[] featuresToBeEdited = { "Task", "Complexity", "Volume", "Urgency", "Enjoyment" };
         final EditText editText = new EditText(this);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setTitle("Choose feature to edit:")
+        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle(getString(R.string.choose_feature_to_edit))
                 .setItems(featuresToBeEdited, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, final int which) {
-                        Toast.makeText(context, "m: "+featuresToBeEdited[which], Toast.LENGTH_SHORT).show();
-                        AlertDialog.Builder builder2 = new AlertDialog.Builder(context)
-                                .setTitle("Choose value: ")
-                                .setView(editText)
-                                .setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                        AlertDialog.Builder builder2 = new AlertDialog.Builder(context).setTitle(getString(R.string.choose_value)).setView(editText)
+                                .setPositiveButton(getString(R.string.done), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which2) {
                                         if(featuresToBeEdited[which].equals("Task")){
@@ -313,11 +306,11 @@ public class SingleTaskActivity extends AppCompatActivity {
                                         }
                                     }
                                 })
-                                .setNegativeButton("Return", null);
+                                .setNegativeButton(getString(R.string.return_button), null);
                         builder2.show();
 
                     }})
-                .setNegativeButton("Return", null);
+                .setNegativeButton(getString(R.string.return_button), null);
         builder.show();
 
     }

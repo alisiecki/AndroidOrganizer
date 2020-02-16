@@ -17,7 +17,7 @@ public class AllData extends AppCompatActivity {
     Button detailedData;
     ArrayAdapter<String> mAdapter;
 
-    ArrayList<Task> allTasksCollection = MainActivity.myDb.getTasksFromTableUsingProperSearchingAssumptions(new String[]{"1,2,3", "1,2,3", "1,2,3", "0,1"});
+    ArrayList<Task> allTasksCollection = MainActivity.myDb.getTasksFromTableUsingProperSearchingAssumptions(new String[]{" 1,2,3", "1,2,3", "1,2,3", "0,1"});
     ArrayList<String> listOfStringsForAdapter = new ArrayList<>();
 
 
@@ -34,7 +34,7 @@ public class AllData extends AppCompatActivity {
         detailedData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utility.showSomeMessage("All data", MainActivity.myDb.getAllDataInOneString(),AllData.this);
+                Utility.showSomeMessage("All data", MainActivity.myDb.getAllDataInOneString(getApplicationContext()),AllData.this);
             }
         });
 
@@ -60,7 +60,7 @@ public class AllData extends AppCompatActivity {
 
         MainActivity.myDb.deleteTask(id);
 
-        textViewOfClickedElement.setText("Deleted");
+        textViewOfClickedElement.setText(getString(R.string.deleted));
 
 
     }

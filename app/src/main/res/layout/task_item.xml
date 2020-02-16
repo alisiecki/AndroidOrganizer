@@ -20,7 +20,7 @@ android:layout_gravity="center_vertical">
     android:layout_height="wrap_content"
     android:layout_alignParentEnd="true"
     android:layout_alignParentRight="true"
-    android:text="Delete"
+    android:text="@string/delete_button"
     android:onClick="deleteTask"/>
 
 

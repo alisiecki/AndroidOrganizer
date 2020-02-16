@@ -1,13 +1,67 @@
 <resources>
     <string name="app_name">Organizer</string>
-    <string name="export_settings">Export</string>
-    <string name="main_button">     losuj     </string>
+
+    <!-- Main Activity -->
+    <string name="main_button">losuj</string>
     <string name="delete_button">delete</string>
     <string name="crash_button">crash</string>
     <string name="work_button">work</string>
     <string name="info_settings">Info</string>
+    <string name="get_all_data">AllData</string>
+    <string name="export_settings">Export</string>
 
+    <!--SingleTask Activity-->
+    <string name="text_showed_before_task_draw">Lets start</string>
+    <string name="task_completed">Task completed!</string>
+    <string name="sure_about_deleting">Are you sure about deleting?</string>
+    <string name="after_deleting">Done! Good job.</string>
+    <string name="task_will_be">Task will be: </string>
+    <string name="complexity">Complexity: </string>
+    <string name="volume">Volume: </string>
+    <string name="urgency">Urgency: </string>
+    <string name="enjoyment">Enjoyment: </string>
+    <string name="next">Next</string>
+    <string name="make_it_happened">Make it happened</string>
+    <string name="after_crash">Crash!</string>
+    <string name="after_crash_2">Add task you will start with next time!</string>
+    <string name="after_work">Great, give it try</string>
+
+    <!-- XMLs -->
+    <string name="add_task">Add task</string>
+    <string name="all_data_legend">Legend: \n C-Complexity \n V-Volume \n U-Urgency \n E-Enjoyment</string>
+    <string name="detailed_data">Detailed Data</string>
+    <string name="edit">Edit</string>
+
+    <!-- Editing -->
+    <string name="choose_feature_to_edit">Choose feature to edit:</string>
+    <string name="choose_value">Choose value:</string>
+
+    <!-- universal -->
+    <string name="no_data_found">No data found</string>
+    <string name="return_button">Return</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="done">Done</string>
+    <string name="deleted">Deleted</string>
     <string name="value1">1</string>
     <string name="value2">2</string>
     <string name="value3">3</string>
+
+    <!--exporting database-->
+    <string name="destination_file_for_database_created">Destination file for database created</string>
+    <string name="path_to_table_to_be_exporter">/data/data/com.ad44.organizer/databases/MojaTabela</string>
+    <string name="export_completed">SQLite tasks database exported to file</string>
+
+    <!--info-->
+    <string name="info_title">Github: </string>
+    <string name="info_content">https://github.com/szerholder/AndroidOrganizer</string>
+
+    <!--TaskDescription-->
+    <string name="easy_and_quick">Easy and quick</string>
+    <string name="easy">Easy</string>
+    <string name="probably_boredom">Probably boredom</string>
+    <string name="chance_for_flow">Chance for Flow</string>
+    <string name="pretty_hard">Pretty hard, crash it</string>
+    <string name="hard">Hard, crash it</string>
+
 </resources>

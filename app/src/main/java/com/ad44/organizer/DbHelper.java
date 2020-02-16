@@ -5,16 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Environment;
-
-
 import androidx.annotation.Nullable;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 
@@ -55,10 +46,7 @@ public class DbHelper extends SQLiteOpenHelper {
         long isItDone = db.insert(tableName, null, newRowInTable);
         db.close();
 
-        if(isItDone == -1)
-            return false;
-        else
-            return true;
+        return isItDone != -1;
 
     }
 
@@ -66,8 +54,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public boolean deleteTask(int id){
         SQLiteDatabase db = getWritableDatabase();
         int a = db.delete(tableName, "ID="+id, null);
-        if(a==1) return true;
-        else return false;
+        return a == 1;
     }
 
 
@@ -77,10 +64,7 @@ public class DbHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(column,value);
         int a = db.update(tableName,cv,"id="+id,null);
-        if(a==1)
-            return true;
-        else
-            return false;
+        return a == 1;
 
     }
 
@@ -91,21 +75,18 @@ public class DbHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(column,value);
         int a = db.update(tableName,cv,"id="+id,null);
-        if(a==1)
-            return true;
-        else
-            return false;
+        return a == 1;
 
     }
 
 
-    public String getAllDataInOneString(){
+    public String getAllDataInOneString(Context context){
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("SELECT * FROM "+tableName, null);
 
         if(result.getCount() == 0){
-            return "no data found";
+            return context.getString(R.string.no_data_found);
         }
         else {
 
@@ -250,13 +231,13 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
-    public String getDataPerIdInString(int id) {
+    public String getDataPerIdInString(int id, Context context) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("SELECT * FROM " + tableName + " ORDER BY ID LIMIT 1 OFFSET " + id, null);
 
         if (result.getCount() == 0) {
-            return "no data found";
+            return context.getString(R.string.no_data_found);
         } else {
 
             StringBuffer buffer = new StringBuffer();
@@ -282,14 +263,12 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("SELECT COUNT(*) FROM "+tableName, null);
         result.moveToFirst();
-        return result.getInt(0);
+        int a =result.getInt(0);
+        result.close();
+        return a;
 
 
     }
-
-
-
-
 
 
 }
