@@ -2,16 +2,18 @@
     <string name="app_name">Organizer</string>
 
     <!-- Main Activity -->
-    <string name="main_button">losuj</string>
+    <string name="main_button">Draw The Task</string>
     <string name="delete_button">delete</string>
     <string name="crash_button">crash</string>
     <string name="work_button">work</string>
     <string name="info_settings">Info</string>
-    <string name="get_all_data">AllData</string>
+    <string name="get_all_data">Show All Data</string>
     <string name="export_settings">Export</string>
+    <string name="new_task">Add New Task</string>
+
 
     <!--SingleTask Activity-->
-    <string name="text_showed_before_task_draw">Lets start</string>
+    <string name="text_showed_before_task_draw">Let\'s start</string>
     <string name="task_completed">Task completed!</string>
     <string name="sure_about_deleting">Are you sure about deleting?</string>
     <string name="after_deleting">Done! Good job.</string>

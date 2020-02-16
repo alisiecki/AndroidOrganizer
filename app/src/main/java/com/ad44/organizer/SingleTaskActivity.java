@@ -21,7 +21,7 @@ public class SingleTaskActivity extends AppCompatActivity {
     Button delete, crash, work, random, edit;
 
     Task randomTaskFromTable;
-    String taskInfo;
+    String taskContent;
     String complexity="";
     String volume="";
     String urgency="";
@@ -64,8 +64,8 @@ public class SingleTaskActivity extends AppCompatActivity {
         enjoymentSwitch2=findViewById(R.id.enjoymentSwitch2);
 
 
-        taskInfo=getString(R.string.text_showed_before_task_draw);
-        drawnTaskText.setText(taskInfo);
+        taskContent =getString(R.string.text_showed_before_task_draw);
+        drawnTaskText.setText(taskContent);
 
 
 
@@ -104,7 +104,7 @@ public class SingleTaskActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setSearchingAssumptions();
                 randomTaskFromTable = MainActivity.myDb.getRandomTaskFromTable(assumptions);
-                setTaskInfoButNotOnScreenForAlertDialogPurpose();
+                setTaskContentButNotOnScreenForAlertDialogPurpose();
                 showDialogWithTaskRandomisation();
                 complexity="";
                 urgency="";
@@ -134,10 +134,10 @@ public class SingleTaskActivity extends AppCompatActivity {
     }
 
 
-    public void setTaskInfoButNotOnScreenForAlertDialogPurpose(){
+    public void setTaskContentButNotOnScreenForAlertDialogPurpose(){
 
         if(randomTaskFromTable !=null) {
-            taskInfo = "ID: " + randomTaskFromTable.getId() + "\n" +
+            taskContent = "ID: " + randomTaskFromTable.getId() + "\n" +
                     "Task:" + randomTaskFromTable.getText() + "\n" +
                     "Complexity: " + randomTaskFromTable.getComplexity() + "\n" +
                     "Volume: " + randomTaskFromTable.getVolume() + "\n" +
@@ -145,7 +145,7 @@ public class SingleTaskActivity extends AppCompatActivity {
                     "Enjoyment: " + randomTaskFromTable.getEnjoyment();
         }
         else{
-            taskInfo=getString(R.string.no_data_found);
+            taskContent =getString(R.string.no_data_found);
 
         }
 
@@ -203,7 +203,7 @@ public class SingleTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 randomTaskFromTable = MainActivity.myDb.getRandomTaskFromTable(assumptions);
-                setTaskInfoButNotOnScreenForAlertDialogPurpose();
+                setTaskContentButNotOnScreenForAlertDialogPurpose();
                 showDialogWithTaskRandomisation();
             }
         });
@@ -211,7 +211,7 @@ public class SingleTaskActivity extends AppCompatActivity {
         builder.setPositiveButton(getString(R.string.make_it_happened), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                drawnTaskText.setText(taskInfo);
+                drawnTaskText.setText(taskContent);
             }
         });
         builder.show();

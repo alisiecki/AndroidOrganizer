@@ -7,47 +7,46 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main"
-
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="#3CC586">
+    android:gravity="center" >
 
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E6CB1E"
-        android:layout_gravity="center"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginBottom="100dp">
+
+        <Button
+            android:id="@+id/new_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/new_task"
+            android:layout_margin="15dp"
+            android:width="200dp"/>
+
 
         <Button
             android:id="@+id/Losuj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#66DF3B"
-            android:textSize="40sp"
-            android:text="@string/main_button" />
+            android:textSize="20sp"
+            android:text="@string/main_button"
+            android:layout_margin="15dp"
+            android:width="200dp"/>
 
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
         <Button
             android:id="@+id/getAllData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
             android:text="@string/get_all_data"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginTop="30dp"/>
+            android:layout_margin="15dp"
+            android:width="200dp"/>
 
 
 
