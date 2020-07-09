@@ -7,6 +7,9 @@ Tasks manager with functionalities of:
 - storing data in SQLite database
 - exporting database to external file
 
+Demonstration link: https://www.youtube.com/watch?v=r-T1-hD-ovM
+
+
 Task class contain fields: ID, Text, Complexity (value: 1,2,3), Volume (value: 1,2,3), Urgency (value: 1,2,3), Enjoyment (0,1).
 
 File organizer-run.apk is propered to download and install on Android 5 or higher.
